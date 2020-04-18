@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "start-dev": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -35,12 +36,14 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.2.0",
+    "path": "^0.12.7",
     "prettier": "^2.0.4",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }
