@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import test from './test';
+import test from './testState';
 
 export default combineReducers({
 	test
