@@ -1,20 +1,26 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import routes from './routes';
+import './app.scss';
+
+const theme = createMuiTheme({
+	palette: {
+		primary: {
+			main: '#0074D9'
+		},
+		secondary: {
+			main: '#4caf50'
+		}
+	}
+});
 
 const App = () => {
-	const number = useSelector((state) => state.test.number);
-	const dispatch = useDispatch();
 	return (
-		<>
-			<div>Google books finder!!</div>
-			<div>{`number ${number}`}</div>
-			<div
-				style={{ height: '50px', width: '80px', backgroundColor: 'blue' }}
-				onClick={() => dispatch({ type: 'ADD_ONE' })}
-			>
-				Add 1
-			</div>
-		</>
+		<ThemeProvider theme={theme}>
+			<Router>{renderRoutes(routes)}</Router>
+		</ThemeProvider>
 	);
 };
 
