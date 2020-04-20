@@ -12,7 +12,7 @@ describe('Test List of books', () => {
 		const store = mockConfigureStore([thunk])({
 			searchReducer: {
 				books: [{ volumeInfo: { title: 'title' } }, { volumeInfo: { title: 'title2' } }],
-				totalItems: 2
+				totalItems: 24
 			}
 		});
 		const theme = createMuiTheme({
@@ -34,6 +34,12 @@ describe('Test List of books', () => {
 		);
 		const selectBook = jest.spyOn(component.find('[testData="book"]').at(1).props(), 'onClick');
 		component.find('[testData="book"]').at(1).props().onClick();
+		const handlePaginate = jest.spyOn(
+			component.find('[testData="pagination"]').at(1).props(),
+			'onChange'
+		);
+		component.find('[testData="pagination"]').at(1).props().onChange();
+		expect(handlePaginate).toBeCalled();
 		expect(selectBook).toBeCalled();
 		expect(component.length).toEqual(1);
 	});
