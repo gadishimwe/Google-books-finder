@@ -1,9 +1,10 @@
-import { SEARCH, SUGGEST, CLEAR_SUGGESTIONS, CLEAR_RESULTS } from '../actions/actionTypes';
+import { SEARCH, SUGGEST, CLEAR_SUGGESTIONS, PAGINATE } from '../actions/actionTypes';
 
 export const initialState = {
 	books: [],
 	suggestions: [],
-	totalItems: undefined
+	totalItems: undefined,
+	url: undefined
 };
 
 export const reducer = (state = initialState, action) => {
@@ -12,7 +13,8 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				books: action.payload.data.totalItems !== 0 ? [...action.payload.data.items] : [],
-				totalItems: action.payload.data.totalItems
+				totalItems: action.payload.data.totalItems,
+				url: action.payload.request ? action.payload.request.responseURL : undefined
 			};
 		case `${SEARCH}_PENDING`:
 			return {
@@ -35,16 +37,25 @@ export const reducer = (state = initialState, action) => {
 			return {
 				...state
 			};
+		case `${PAGINATE}_FULFILLED`:
+			return {
+				...state,
+				books: action.payload.data.totalItems !== 0 ? [...action.payload.data.items] : [],
+				totalItems: action.payload.data.totalItems,
+				url: action.payload.request ? action.payload.request.responseURL : undefined
+			};
+		case `${PAGINATE}_PENDING`:
+			return {
+				...state
+			};
+		case `${PAGINATE}_REJECTED`:
+			return {
+				...state
+			};
 		case CLEAR_SUGGESTIONS:
 			return {
 				...state,
 				suggestions: []
-			};
-		case CLEAR_RESULTS:
-			return {
-				...state,
-				books: [],
-				totalItems: undefined
 			};
 		default:
 			return state;

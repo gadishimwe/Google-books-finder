@@ -51,7 +51,6 @@ const Search = ({ history }) => {
 		suggest(e.target.value);
 	};
 	const handleSearch = (val, sug) => {
-		dispatch({ type: 'CLEAR_RESULTS' });
 		dispatch({ type: 'CLEAR_SUGGESTIONS' });
 		dispatch(searchAction(val, sug));
 		history.push('/books');
