@@ -72,6 +72,6 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.3.0",
-    "url-parse": "^1.4.7"
+    "url-parse": "^1.5.0"
   }
 }
